@@ -1,0 +1,81 @@
+fields:
+  general_section:
+    display: General
+    type: section
+  active:
+    type: toggle
+    width: 50
+  hooks_section:
+    type: section
+    display: Webhooks
+  webhooks:
+    sets:
+      webhook:
+        display: Hook
+        fields:
+          url:
+            type: text
+            display: 'Webhook URL'
+            validate: required|url
+          saved:
+            options:
+              addonSettings: Addon Settings
+              assetContainer: Asset Container
+              assetFolder: Asset Folder
+              collection: Collection
+              entry: Entry
+              fieldset: Fieldset
+              globals: Globals
+              page: Page
+              role: Role
+              settings: Settings
+              submission: Submission
+              taxonomy: Taxonomy
+              term: Term
+              userGroup: User Group
+              user: User
+            type: checkboxes
+            width: 50
+            display: Saved
+          deleted:
+            options:
+              assetContainer: Asset Container
+              asset: Asset
+              assetFolder: Asset Folder
+              collection: Collection
+              entry: Entry
+              fieldset: Fieldset
+              globals: Globals
+              page: Page
+              role: Role
+              submission: Submission
+              taxonomy: Taxonomy
+              term: Term
+              user: User
+              userGroup: User Group
+            type: checkboxes
+            width: 50
+            display: Deleted
+          uploaded:
+            options:
+              asset: Asset
+              file: File
+            type: checkboxes
+            width: 50
+            display: Uploaded
+          moved:
+            options:
+              asset: Asset
+              page: Page
+              pages: Pages
+            type: checkboxes
+            width: 50
+            display: Moved
+          replaced:
+            options:
+              asset: Asset
+            type: checkboxes
+            width: 50
+            display: Replaced
+    type: replicator
+    display: Hooks
