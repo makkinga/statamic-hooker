@@ -110,7 +110,7 @@ class HookerListener extends Listener
             $webhook = collect($webhook);
 
             if ($webhook->has($action) && in_array($type, $webhook->get($action))) {
-                $this->trigger($webhook->get('url'), $type, $action, $event);
+                $this->trigger($webhook->get('url'), $type, $action, $event, $webhook->get('hidden_keys') ?? []);
             }
         });
     }
@@ -123,9 +123,21 @@ class HookerListener extends Listener
      * @param $action
      * @param $event
      */
-    protected function trigger($url, $type, $action, $event)
+    protected function trigger($url, $type, $action, $event, $hidden)
     {
         $client = new Client();
+
+        $data = reset($event)->data->toArray();
+        $original = reset($event)->original;
+
+        foreach ($hidden as $key) {
+            if (isset($data[$key])) {
+                unset($data[$key]);
+            }
+            if (isset($original[$key])) {
+                unset($original[$key]);
+            }
+        }
 
         $client->post($url, [
             RequestOptions::JSON => [
