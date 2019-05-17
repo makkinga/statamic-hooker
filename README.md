@@ -6,19 +6,36 @@ A simple little addon for making webhooks.
 ## Installation
 Download or clone this repo and move the `Hooker` folder into the `~/site/addons` directory of your project.
 
-Run the upate command from the root of your project to install the addon depenencies:
+Run the update command from the root of your project to install the addon depenencies:
 ```shell
 php please update:addons
 ```
 Done!
 
-## License
-MIT License
+## Usage
+### Adding a new hook
+In your project's CP navigate to `Addons > Hooker`.
 
-Copyright (c) 2018 Gydo Makkinga
+Click the `Hook +` button to make a new webhook.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+In the replicater entry you just made, enter the endpoint that should be triggered.
 
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+### Selecting events
+Under the endpoint input you see all the Statamic events that can be lissened to. Every event you select here will trigger your hook.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+### Hide keys
+If for example you want to hide personal information these keys can be hidden from the request to your endpoint.
+To do this, simply add the field's key to the `Hidden keys` list.
+
+## Examples
+### Mailchimp
+Lets say you want to send a newsletter each time a new product has been added to your shop or send a welcoming email each time a new user has been added.
+
+In that case you make a hook with the Mailchimp trigger endpoint as URL and select eighter `Saved > entry` or `Saved > User`.
+
+Each time you save an Entry or a User one of the hooks will be triggered and it will make a request to the given URL.
+
+In order to know what happened on the receiving side, Statamic Hooker will send all the information about the event with it's request
+
+## Feature wishlist
+- The option to select a specific Collection, Entry, User etc
